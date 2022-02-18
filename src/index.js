@@ -14,5 +14,20 @@ const renderer = new THREE.WebGLRenderer();     // What the user should see
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );       // Add it to the DOM
 
+// Instantiated geometry element
+const geometry = new THREE.BoxGeometry();
+
+// Instantiated material element
+const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+
+// Create a mesh
+const cube = new THREE.Mesh( geometry, material );
+
+// Add cube to scene
+scene.add( cube );
+
+// Move the camera to see the cube
+camera.position.z = 6;
+
 // To start
 renderer.render(scene, camera);
