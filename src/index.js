@@ -29,5 +29,17 @@ scene.add( cube );
 // Move the camera to see the cube
 camera.position.z = 6;
 
-// To start
-renderer.render(scene, camera);
+// For animation
+// Every seconds this function is called
+function animate() {
+    // Rotate the cube
+    cube.rotation.x += 0.01;
+    cube.rotation.y += 0.01;
+
+    // Infinite loop
+	requestAnimationFrame( animate );
+
+	renderer.render( scene, camera );
+}
+
+animate();
