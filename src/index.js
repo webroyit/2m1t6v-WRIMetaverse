@@ -17,8 +17,20 @@ document.body.appendChild( renderer.domElement );       // Add it to the DOM
 // Instantiated geometry element
 const geometry = new THREE.BoxGeometry();
 
+const light = new THREE.AmbientLight(0x404040);
+
+/*  Direction of the light
+    1) Color
+    2) Brightness Value
+*/ 
+const dLight = new THREE.DirectionalLight(0xffffff, 0.5);
+
+// Apply the light
+light.add(dLight);
+scene.add(light);
+
 // Instantiated material element
-const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+const material = new THREE.MeshPhongMaterial( { color: 0x00ff00 } );
 
 // Create a mesh
 const cube = new THREE.Mesh( geometry, material );
