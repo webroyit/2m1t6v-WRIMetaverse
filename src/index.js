@@ -1,3 +1,5 @@
+import keyInput from "./keyInput.js";
+
 const ratio = window.innerWidth / window.innerHeight;
 
 // Creating the scene
