@@ -66,6 +66,19 @@ scene.add( box );
 // Every seconds this function is called
 function animate() {
 	requestAnimationFrame( animate );   // Infinite loop
+
+    // For Up
+    if(keyInput.isPressed(38)){
+        camera.position.y += 0.05;
+        camera.position.x += 0.05;
+    }
+
+    // For Down
+    if(keyInput.isPressed(40)){
+        camera.position.y -= 0.05;
+        camera.position.x -= 0.05;
+    }
+    
     camera.lookAt(ground.position);     // Set the camera to look at ground
 	renderer.render( scene, camera );
 }
