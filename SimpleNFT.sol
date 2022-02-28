@@ -17,16 +17,32 @@ contract SimpleNFT is ERC721, Ownable {
   string public uriSuffix = ".json";
   string public hiddenMetadataUri;
   
-  uint256 public cost = 0.01 ether;
-  uint256 public maxSupply = 10000;
+  uint256 public cost = 0 ether;
+  uint256 public maxSupply = 12;
   uint256 public maxMintAmountPerTx = 5;
 
-  bool public paused = true;
+  bool public paused = false;
   bool public revealed = false;
 
-  constructor() ERC721("NAME", "SYMBOL") {
+  // `struct` is a custom data type
+  struct Building {
+    string name;
+    int8 w;
+    int8 h;
+    int8 d;
+    int8 x;
+    int8 y;
+    int8 z;
+  }
+
+  Building[] public buildings;
+
+  constructor() ERC721("HVerse", "HVS") {
     // Make it easy to verify the contract on etherscan
     setHiddenMetadataUri("ipfs://__CID__/hidden.json");
+
+    buildings.push(Building("ZERO", 0, 0, 0, 0, 0, 0));
+    buildings.push(Building("House", 1, 3, 2, 2, 0, 3));
   }
 
   // Check requirements before minting
@@ -34,6 +50,11 @@ contract SimpleNFT is ERC721, Ownable {
     require(_mintAmount > 0 && _mintAmount <= maxMintAmountPerTx, "Invalid mint amount!");
     require(supply.current() + _mintAmount <= maxSupply, "Max supply exceeded!");
     _;
+  }
+
+  // Return list of building
+  function getBuilding() public view returns (Building[] memory) {
+    return buildings;
   }
 
   // Return number of NFTs minted
