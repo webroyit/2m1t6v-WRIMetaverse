@@ -1,4 +1,5 @@
 import keyInput from "./keyInput.js";
+import connect from './connect.js';
 
 const ratio = window.innerWidth / window.innerHeight;
 
@@ -84,3 +85,6 @@ function animate() {
 }
 
 animate();
+connect.then(() => {
+    console.log("Connect");
+});
