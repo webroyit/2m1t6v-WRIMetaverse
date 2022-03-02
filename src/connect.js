@@ -16,7 +16,21 @@ const connect = new Promise((res, rej) => {
     // It takes in Contract ABI and Address
     let contract = new web3.eth.Contract(abi, "0x9DcbBe83063Fe6CAbb6eCa0CDAfd6057Fd36b3b7");
 
-    console.log(contract);
+    // Get ETH address
+    web3.eth.getAccounts().then((accounts) => {
+        contract.methods
+            .totalSupply()
+            .call({ from: accounts[0]})
+            .then((supply) => {
+                contract.methods
+                    .getBuilding()
+                    .call({ from: accounts[0]})
+                    .then((data) => {
+                        console.log(supply, data);
+                        res({ supply, building: data})
+                    })
+            })
+    })
 })
 
 export default connect;
