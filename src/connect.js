@@ -7,7 +7,16 @@ const connect = new Promise((res, rej) => {
         rej("Install Metamask");
     }
     window.ethereum.request({ method: "eth_requestAccounts" });
-    res("Connect");
+    
+    // Create web3 instance
+    // It takes in a provider. (MetaMask Provider)
+    let web3 = new Web3(window.ethereum);
+
+    // Instantiate NFT contract
+    // It takes in Contract ABI and Address
+    let contract = new web3.eth.Contract(abi, "0x9DcbBe83063Fe6CAbb6eCa0CDAfd6057Fd36b3b7");
+
+    console.log(contract);
 })
 
 export default connect;
