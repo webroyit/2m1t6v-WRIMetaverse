@@ -26,8 +26,7 @@ const connect = new Promise((res, rej) => {
                     .getBuilding()
                     .call({ from: accounts[0]})
                     .then((data) => {
-                        console.log(supply, data);
-                        res({ supply, building: data})
+                        res({ supply, buildings: data});
                     })
             })
     })
